@@ -89,6 +89,7 @@ function displayNotification(message) {
     const notificationBar = document.getElementById('notificationBar');
     notificationBar.textContent = message;
     notificationBar.style.display = 'block';
+    Quotes synced with server!
 
     setTimeout(() => {
         notificationBar.style.display = 'none';
