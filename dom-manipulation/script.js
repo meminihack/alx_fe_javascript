@@ -1,12 +1,15 @@
-let quotesArray = [
-    { text: "The only limit to our realization of tomorrow is our doubts of today.", category: "Motivation" },
+let quotesArray = [ { text: "The only limit to our realization of tomorrow is our doubts of today.", category: "Motivation" },
     { text: "Life is what happens when you're busy making other plans.", category: "Life" }
 ];
 function showRandomQuote() {
     const randomIndex = Math.floor(Math.random() * quotesArray.length);
     const randomQuote = quotesArray[randomIndex];
     const quoteDisplay = document.getElementById('quoteDisplay');
-    quoteDisplay.textContent = `"${randomQuote.text}" - ${randomQuote.category}`;
+    if (quoteDisplay) {
+        quoteDisplay.innerHTML = `"${randomQuote.text}" - <em>${randomQuote.category}</em>`;
+    } else {
+        console.error('quoteDisplay element not found');
+    }
 }
 function createAddQuoteForm() {
     const formDiv = document.createElement('div');
@@ -23,32 +26,44 @@ function createAddQuoteForm() {
     addButton.onclick = addQuote; 
     formDiv.appendChild(quoteInput);
     formDiv.appendChild(categoryInput);
-    formDiv.appendChild(addButton);
+    formDiv.appendChild(addButton)
     const formSection = document.getElementById('formSection');
-    formSection.appendChild(formDiv);
+    if (formSection) {
+        formSection.appendChild(formDiv);
+    } else {
+        console.error('formSection element not found');
+    }
 }
-
 function addQuote() {
     const newQuoteText = document.getElementById('newQuoteText').value;
     const newQuoteCategory = document.getElementById('newQuoteCategory').value;
 
     if (newQuoteText && newQuoteCategory) {
-      
-        quotesArray.push({ text: newQuoteText, category: newQuoteCategory });
-
+        quotesArray.push({ text: newQuoteText, category: newQuoteCategory })
         const quoteList = document.getElementById('quoteList');
-        const newQuoteItem = document.createElement('li');
-        newQuoteItem.textContent = `"${newQuoteText}" - ${newQuoteCategory}`;
-        quoteList.appendChild(newQuoteItem);
-
+        if (quoteList) {
+            const newQuoteItem = document.createElement('li');
+            newQuoteItem.innerHTML = `"${newQuoteText}" - <em>${newQuoteCategory}</em>`;
+            quoteList.appendChild(newQuoteItem);
+        } else {
+            console.error('quoteList element not found');
+        }
         document.getElementById('newQuoteText').value = '';
         document.getElementById('newQuoteCategory').value = '';
     } else {
         alert('Please enter both quote text and category');
     }
 }
-
+function addShowQuoteEventListener() {
+    const showQuoteButton = document.getElementById('showNewQuoteButton');
+    if (showQuoteButton) {
+        showQuoteButton.addEventListener('click', showRandomQuote);
+    } else {
+        console.error('showNewQuoteButton element not found');
+    }
+}
 document.addEventListener('DOMContentLoaded', function() {
     createAddQuoteForm();
     showRandomQuote();
+    addShowQuoteEventListener();
 });
