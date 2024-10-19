@@ -12,7 +12,7 @@
     <ul id="quoteList"></ul>
 
     <!-- Buttons to export and import JSON files -->
-    <button id="exportQuotesButton">Export Quotes to JSON</button>
+    <button id="exportQuotesButton">Export Quotes</button>
     <input type="file" id="importFile" accept=".json" onchange="importFromJsonFile(event)" />
 
     <!-- Include your JavaScript file -->
@@ -50,7 +50,6 @@
                 alert('Please enter both quote text and category');
             }
         }
-
         function updateQuoteList() {
             const quoteList = document.getElementById('quoteList');
             quoteList.innerHTML = ''; 
@@ -118,11 +117,9 @@
             loadQuotes();
             showRandomQuote();
             addShowQuoteEventListener();
+
+            // Event listener for exporting quotes to JSON
             document.getElementById('exportQuotesButton').addEventListener('click', exportToJsonFile);
         });
     </script>
 </body>
-
-   
-    
-  
