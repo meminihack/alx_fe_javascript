@@ -84,6 +84,9 @@ function syncQuotes() {
     setInterval(fetchQuotesFromServer, 60000);
 }
 
+function syncQuotes() {
+    setInterval(fetchQuotesFromServer, 60000);  
+}
 
 function displayNotification(message) {
     const notificationBar = document.getElementById('notificationBar');
@@ -92,9 +95,8 @@ function displayNotification(message) {
 
     setTimeout(() => {
         notificationBar.style.display = 'none';
-    }, 3000);
+    }, 3000);  
 }
-
 
 document.addEventListener('DOMContentLoaded', function() {
     loadQuotes();
@@ -103,7 +105,7 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('showNewQuoteButton').addEventListener('click', showRandomQuote);
     document.getElementById('syncButton').addEventListener('click', fetchQuotesFromServer);
 
-
+    
     syncQuotes();
 });
 
