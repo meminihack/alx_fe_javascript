@@ -77,13 +77,10 @@ function resolveConflicts(serverQuotes) {
     });
 
     quotesArray = mergedQuotes;
+    if (serverQuotes.length > 0) {
+        alert('Quotes from the server merged with local data. Conflicts resolved!');
+    }
 }
-
-
-function syncQuotes() {
-    setInterval(fetchQuotesFromServer, 60000);
-}
-
 function syncQuotes() {
     setInterval(fetchQuotesFromServer, 60000);  
 }
